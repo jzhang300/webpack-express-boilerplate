@@ -1,34 +1,36 @@
-var assign = require('object-assign'),
-    EventEmitter = require('events').EventEmitter,
-    Actions = require('../actions/Actions'),
-    Dispatcher = require('../dispatcher/AppDispatcher');
-    
-var _value = 'react';
-var _count = 0;
+import assign from 'object-assign';
+import { EventEmitter } from 'events';
+import  Actions from 'actions/Actions';
+import Dispatcher from 'dispatcher/AppDispatcher';
 
-var Store = assign({}, EventEmitter.prototype, {
-  get: function() {
+let _value = 'react';
+let _count = 0;
+
+const Store = assign({}, EventEmitter.prototype, {
+  get() {
     return {
       value: _value,
       count: _count
-    }
-  }  
+    };
+  }
 });
 
-Store.dispatchToken = Dispatcher.register(function(payload) {
+Store.dispatchToken = Dispatcher.register((payload) => {
+  const action = payload.action;
+  switch (action.type) {
 
-  var action = payload.action;
-  switch(action.type) {
-    
-    case Actions.TYPES.SET:
-      _value = action.value;
-      Store.emit('change');
-      break;
-      
-    case Actions.TYPES.ADD:
-      _count += action.n;
-      Store.emit('change');
-      break;
+  case Actions.TYPES.SET:
+    _value = action.value;
+    Store.emit('change');
+    break;
+
+  case Actions.TYPES.ADD:
+    _count += action.n;
+    Store.emit('change');
+    break;
+
+  default:
+    break;
   }
 });
 

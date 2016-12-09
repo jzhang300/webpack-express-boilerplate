@@ -1,5 +1,4 @@
-var Dispatcher = require('../dispatcher/AppDispatcher'),
-    keyMirror = require('keymirror');
+import Dispatcher from 'dispatcher/AppDispatcher';
 
 
 /**
@@ -7,24 +6,24 @@ var Dispatcher = require('../dispatcher/AppDispatcher'),
  * Flux application architecture.
  *
  */
-var Actions = {
+const Actions = {
 
-  TYPES: keyMirror({
-    SET: null,
-    ADD: null,
-  }),
+  TYPES: {
+    'SET': 'SET',
+    'ADD': 'ADD',
+  },
 
-  set: function(val) {
+  set: (val) => {
     Dispatcher.handleViewAction({
       type: Actions.TYPES.SET,
       value: val
     });
   },
 
-  add: function(n) {
+  add: (n) => {
     Dispatcher.handleViewAction({
       type: Actions.TYPES.ADD,
-      n: n
+      n
     });
   }
 };

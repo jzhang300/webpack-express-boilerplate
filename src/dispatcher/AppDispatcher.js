@@ -1,17 +1,16 @@
-var Dispatcher = require('flux').Dispatcher,
-    assign = require('object-assign');
+import { Dispatcher } from 'flux';
+import assign from 'object-assign';
 
-
-var AppDispatcher = assign(new Dispatcher(), {
+const AppDispatcher = assign(new Dispatcher(), {
 
   /**
    * @param {object} action The details of the action, including the action's
    * type and additional data coming from the server.
    */
-  handleServerAction: function(action) {
-    var payload = {
+  handleServerAction(action) {
+    const payload = {
       source: 'server',
-      action: action
+      action
     };
     this.dispatch(payload);
   },
@@ -20,10 +19,10 @@ var AppDispatcher = assign(new Dispatcher(), {
    * @param {object} action The details of the action, including the action's
    * type and additional data coming from the view.
    */
-  handleViewAction: function(action) {
-    var payload = {
+  handleViewAction(action) {
+    const payload = {
       source: 'view',
-      action: action
+      action
     };
     this.dispatch(payload);
   }

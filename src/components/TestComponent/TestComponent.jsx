@@ -1,25 +1,25 @@
 import styles from './TestComponent.css';
-var React = require('react'),
-    Actions = require('actions/Actions'),
-    Store = require('stores/Store');
+import React from 'react';
+import Actions from 'actions/Actions';
+import Store from 'stores/Store';
 
-var TestComponent = React.createClass({
-  getInitialState: function() {
+const TestComponent = React.createClass({
+  getInitialState() {
     return Store.get();
   },
-  componentDidMount: function() {
+  componentDidMount() {
     Store.addListener('change', this.changeEventHandler);
   },
-  changeEventHandler: function() {
+  changeEventHandler() {
     this.setState(Store.get());
   },
-  handleChange: function(event) {
+  handleChange(event) {
     Actions.set(event.target.value);
   },
-  handleButtonClick: function(event) {
+  handleButtonClick() {
     Actions.add(1);
   },
-	render: function() {
+  render() {
     return (
     	<div className={styles.container}>
     		Hello sdf jsdlfk as <input onChange={this.handleChange} defaultValue={this.state.value} type="text"/>
@@ -27,7 +27,8 @@ var TestComponent = React.createClass({
         <hr/>
         <span>{this.state.count}: {this.state.value}</span>
      	</div>
-  )}
+    );
+  }
 });
 
 module.exports = TestComponent;

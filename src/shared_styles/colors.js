@@ -24,7 +24,7 @@ module.exports = {
   gray_60: '#6d6d6d',
   gray_70: '#585858',
   gray_80: '#414141',
-  gray_85 : '#2c2c2c',
+  gray_85: '#2c2c2c',
   gray_90: '#171717',
 
   cool_gray_10: '#DFE9E9',
@@ -159,4 +159,4 @@ module.exports = {
   indigo_80: '#2A2A5A',
   indigo_90: '#202041',
   indigo_100: '#010102',
-}
+};
